@@ -21,5 +21,8 @@ CREATE TABLE IF NOT EXISTS orders (
     INDEX idx_order_no (order_no)
 );
 
-INSERT INTO product (name, price, stock, seckill_stock, start_time, end_time) 
-VALUES ('iPhone 15 Pro', 7999.00, 100, 10, NOW(), DATE_ADD(NOW(), INTERVAL 1 HOUR));
+INSERT IGNORE INTO product (id, name, price, stock, seckill_stock, start_time, end_time) VALUES 
+(1, 'iPhone 15 Pro', 7999.00, 100, 10, NOW(), DATE_ADD(NOW(), INTERVAL 1 MINUTE)),
+(2, 'MacBook Pro 14寸', 12999.00, 50, 5, NOW(), DATE_ADD(NOW(), INTERVAL 1 MINUTE)),
+(3, 'AirPods Pro 2', 1699.00, 200, 20, NOW(), DATE_ADD(NOW(), INTERVAL 1 MINUTE)),
+(4, 'iPad Pro 12.9寸', 8499.00, 30, 8, NOW(), DATE_ADD(NOW(), INTERVAL 1 MINUTE));

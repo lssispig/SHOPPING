@@ -6,6 +6,7 @@ import com.java.shopping.mapper.OrderMapper;
 import com.java.shopping.mapper.ProductMapper;
 import com.java.shopping.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Override
     @Transactional
@@ -103,6 +107,27 @@ public class OrderServiceImpl implements OrderService {
             }
         } catch (Exception e) {
             // 数据库未就绪或表不存在时静默跳过，避免刷屏
+        }
+    }
+
+    @Scheduled(fixedRate = 60000)
+    public void syncExpiredSeckillStock() {
+        try {
+            List<Product> expiredList = productMapper.selectExpiredSeckill();
+            for (Product p : expiredList) {
+                String stockKey = "seckill:stock:" + p.getId();
+                String remain = redisTemplate.opsForValue().get(stockKey);
+                if (remain != null) {
+                    int remaining = Integer.parseInt(remain);
+                    if (remaining > 0) {
+                        productMapper.increaseStockByAmount(p.getId(), remaining);
+                    }
+                    redisTemplate.delete(stockKey);
+                }
+                productMapper.markSeckillEnded(p.getId());
+            }
+        } catch (Exception e) {
+            // 静默跳过
         }
     }
 }
