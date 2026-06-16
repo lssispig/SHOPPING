@@ -1,0 +1,33 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< com.java:Shopping >--------------------------
+[INFO] Building Shopping 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.0.2:run (default-cli) > test-compile @ Shopping >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ Shopping ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ Shopping ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ Shopping ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory E:\JAVA\workspace\Shopping\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ Shopping ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.0.2:run (default-cli) < test-compile @ Shopping <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.0.2:run (default-cli) @ Shopping ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.392 s
+[INFO] Finished at: 2026-06-16T14:14:14+08:00
+[INFO] ------------------------------------------------------------------------
